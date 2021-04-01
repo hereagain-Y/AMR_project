@@ -1,4 +1,4 @@
-# codes for obtaing table 1----------------------------------------------------
+# codes for obtaing table 2----------------------------------------------------
 library(dplyr)
 library(xlsx)
 ast_319<-read.csv( "C:\\Users\\Danwei Yao\\Documents\\AMR\\data\\astresult0319.csv",sep=",",header=T)
