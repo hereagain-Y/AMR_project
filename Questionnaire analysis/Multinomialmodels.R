@@ -3,7 +3,7 @@
 
 # combine with questionnaire data
 human_stool$id=substring(human_stool$i_pid,1,5)
-head(human_stool)
+
 new_data=human_stool%>%
   select(id,a_lab_id,newcheck)
 joined_data2=right_join(question,new_data,by=c("PID"="id"))
@@ -12,23 +12,20 @@ dataset2=joined_data2%>%
   select(PID,a_lab_id,newcheck,gender_BL,age_BL,edu_level_BL,num_eld_BL,consult_gp_year_BL,ever_taken_ABX_BL,course_year_BL,
          diabetes_BL:asthma_BL,
          handle_raw_BL:swim_BL,last_ABX_BL)
-table(dataset2$last_ABX_BL)
+
 dataset2$newcheck=ifelse(dataset2$newcheck==3,2,dataset2$newcheck)
-dim(dataset2)
+
 # factor and rename the vars, grouped into ABX used and unused  
-dim(dataset2)
+
 used<-subset(dataset2,ever_taken_ABX_BL=="1")
 notused<-subset(dataset2,ever_taken_ABX_BL=="0")
 save(notused,file="C:\\Users\\Danwei Yao\\Desktop\\output\\Notused.Rdata")
-dim(used)
-length(unique(used$PID))
-used$raw_veg_BL
-table(notused$newcheck,notused$raw_seafood_BL)
+
 used$consult_gp_year_BL=as.numeric(used$consult_gp_year_BL)
 used$consult_gp_year_BL=cut(used$consult_gp_year_BL,breaks = c(-Inf,0,Inf),labels = c("Never","1+times"))
 used$raw_veg_BL<-cut(used$raw_veg_BL,breaks=c(-Inf,1,Inf),labels = c("0-2times","3+times"))
 dataset2$newcheck=factor(dataset2$newcheck,levels=c(0,1,2),label=c("homoresistance","25%heteroresistance","50%heteroresistance"))
-table(dataset2$last_ABX_BL)
+
 dataset2$raw_veg_BL<-as.numeric(dataset2$raw_veg_BL)
 dataset2$edu_level_BL=cut(dataset2$edu_level_BL,breaks=c(-Inf,2,3,4),labels=c("S1-S3 or below","S4-S6/Matriculation","Tertiary or above"))
 dataset2$num_eld_BL=cut(dataset2$num_eld_BL,breaks = c(-Inf,0,Inf),labels = c("None","1 or 2+"))
@@ -61,9 +58,8 @@ str(dataset2)
 dataset2[,7:25]=lapply(dataset2[,7:25],factor)
 
 dataset2.full=dataset2[complete.cases(dataset2),]
-dim(dataset2.full)
-dim(dataset2)
-dataset2.full$course_year_BL
+
+
 #####3#######################################################################
 chisq.test(table(dataset2$gender_BL, dataset2$handle_raw_BL))# sig
 chisq.test(table(dataset2$gender_BL, dataset2$raw_seafood_BL))
