@@ -3,6 +3,8 @@ library(dplyr)
 library(tidyverse)
 question<-read_excel("~/Desktop/AMR/Questionnaire_20210326.xlsx",sheet = 1)
 head(question)
+str(question)
+question%>%cut()
 
 isolates<-read.csv("~/Desktop/isolated.csv",sep=",",header=T)
 dim(isolates)
