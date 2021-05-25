@@ -42,23 +42,28 @@ Mic_classification<-function(farm,stage){
   if(stage=="piglet"){
     datcount=farm%>%filter(grepl("^S.P.*",i_pid))%>%
       select(1:2,!contains("result"))
-  }else if(stage=="weaner"){
+    }else if(stage=="weaner"){
     datcount=farm%>%filter(grepl("^S.W.*",i_pid))%>%
       select(1:2,!contains("result"))
     
-  }else if(stage=="grower"){
-    datcount=farm%>%filter(grepl("^S.G.*",i_pid))%>%
-      select(1:2,!contains("result"))
-  }else{
-    datcount=farm%>%filter(grepl("^S.F.*",i_pid))%>%
-      select(1:2,!contains("result"))
-  }
+       }else if(stage=="grower"){
+         datcount=farm%>%filter(grepl("^S.G.*",i_pid))%>%
+          select(1:2,!contains("result"))
+        }else{
+          datcount=farm%>%filter(grepl("^S.F.*",i_pid))%>%
+              select(1:2,!contains("result"))
+     }
   datcount[,7:41]=lapply(datcount[,7:41],as.numeric)
   dat=datcount%>%
     select_if(~!is.numeric(.)||sum(.)!=0)
-  example=dat[,7:23]
-  example[,1:17]=lapply(seq(1,17,by=1), function(x)example[,x]=example[,x]/cut_off[x])
-  example<-cbind(id=datcount$a_lab_id,example)
-  example<-gather(example,a_amocla_mic:a_trisul_mic,key="colname",value = "value")
+        example=dat[,7:23]
+            example[,1:17]=lapply(seq(1,17,by=1), function(x)example[,x]=example[,x]/cut_off[x])
+                 example<-cbind(id=datcount$a_lab_id,example)
+                 example<-gather(example,a_amocla_mic:a_trisul_mic,key="colname",value = "value")
+                  example$colname=sapply(strsplit(example$colname,"_"),function(x)x[2])
+                       example$colname=factor(example$colname,levels = c("coamoxiclav","ampicillin","Chlora.phenicol",
+                                                    "cotrimoxazole","tetracyclines","gentamicin","cefoxitin","ceftazidime",
+                                                    "ceftriaxone", "cefepime","ciprofloxacin","tobramycin","imipenem",
+                                                    "merope","azithromycin","aztreonam","colistin")
   return(example)
 }
