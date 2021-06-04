@@ -59,7 +59,7 @@ Mic_classification<-function(farm,stage){
         example=dat[,7:23]
             example[,1:17]=lapply(seq(1,17,by=1), function(x)example[,x]=example[,x]/cut_off[x])
                  example<-cbind(id=datcount$a_lab_id,example)
-                 example<-gather(example,a_amocla_mic:a_trisul_mic,key="colname",value = "value")
+                 example<-gather(example,a_coamoxiclav_mic:a_cotrimoxazole_mic,key="colname",value = "value")
                   example$colname=sapply(strsplit(example$colname,"_"),function(x)x[2])
                        example$colname=factor(example$colname,levels = c("coamoxiclav","ampicillin","Chlora.phenicol",
                                                     "cotrimoxazole","tetracyclines","gentamicin","cefoxitin","ceftazidime",
