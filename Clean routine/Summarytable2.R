@@ -52,7 +52,7 @@ make_table2<-function(x,y,z){
   samplenames<-c("Human stool","Human nasal","Swine stool","Swine sludge","Poultry swab","Poultry fecal","Poultry sludge","Swine iffluent water","Swine effluet","River","Beach","Animal local","Animal imported","Animal unknown","Vege unknown")
   
   colnames(datalist)=samplenames
-  datalist[,which(is.na)]<-0
+   datalist=datalist[, colSums(is.na(datalist)) == 0]
   datalist
 }
 
