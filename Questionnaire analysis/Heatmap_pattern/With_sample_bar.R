@@ -32,6 +32,8 @@ plot+annotation_custom(ggplotGrob(legs),
                     xmin = .2, xmax = .5, 
                     ymin = 0, ymax = length(unique(data$id))+0.5)
 }
+#--------------------------------------------------------------------------
+#use dplyr to build pic lists from different groups ----------------------
 
 groud_c=drug_map%>%
   filter(group=="Female(<65)")%>%
@@ -46,6 +48,9 @@ library(ggpubr
 ggarrange(plots$plots[[1]],plots$plots[[2]],nrow = 2,labels = c("A","B"),heights = c(2,1.5),common.legend = T,legend = "bottom")
 
 #-----------------------------------------------------------------------------
+#not a tidy work
+#here seperate into 8 pics represents for 8 groups
+# add them together but don't know how to add title
 dat2=drug_map%>%
   filter(group=="Male(<65)"&abx_group=="Use Abx")
 dat1=drug_map%>%
