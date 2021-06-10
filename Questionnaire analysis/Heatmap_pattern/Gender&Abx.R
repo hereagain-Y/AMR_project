@@ -1,4 +1,4 @@
-
+#use data from ast result and questionnaire 
 dim(ast_319)
 dim(ques05)
 library(dplyr)
@@ -83,7 +83,7 @@ p1=plot.heatmap(mapa)+ggtitle("Male(<65)")
 p2=plot.heatmap(mapb)+ggtitle("Male(65+)")
 p3=plot.heatmap(mapc)+ggtitle("Female(<65)")
 p4=plot.heatmap(mapd)+ggtitle("Female(65+)")
-# make it a dark position 
+# make it a dark panel
 grid_map<-function(data,datagroup){
 data%>%
   filter(group==datagroup)%>%
