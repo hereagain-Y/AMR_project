@@ -1,4 +1,21 @@
-install.packages("tidyverse")
+#' @title
+#' Find monthly missing isolates that forget to do AST test.
+#'
+
+#' @references
+#'
+#' @export
+#'
+#' @examples \dontrun{
+#' # Load some packages
+#' library(dplyr)
+#' library(tibble)
+#' library(ggplot2)
+#' library(sqldf)
+#' # List of loaded packages -- before
+#' (.packages())
+#'
+
 library(dplyr)
 library(tidyverse)
 library(xlsx)
