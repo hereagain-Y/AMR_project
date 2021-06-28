@@ -1,4 +1,29 @@
-
+##' @title
+#'Monthly routine for questionnaire data
+#'
+#' @description
+#' This code help to calculate the resistanc level from our AsT dataset
+#' we can set the cut-off according to the guidelines.
+#'
+#' @references
+#' 
+#'
+#' @export
+#'
+#' @examples \dontrun{
+#' # Load some packages
+#' library(dplyr)
+#' library(tibble)
+#' library(ggplot2)
+#' 
+#' # List of loaded packages -- before
+#' (.packages())
+#'
+#' 
+#' do_chisq_test(table.dat,"edu_level_BL","group","1")
+#' export2word(sum_tab,file = "C:\\Users\\Danwei Yao\\Desktop\\Answer_table0618.docx",strip = T)
+#'
+#' 
 
 
 library(readxl)
@@ -23,8 +48,12 @@ do_chisq_test=function(data,var1=character(),var2=character(),levels,gender){
 }
 		 #example
 		  do_chisq_test(table.dat,"edu_level_BL","group","1")
+		  
 
-#--------------------------------------------------------------------------
+		  
+# ------------------------------------------------------------------------*
+#--------------------Data Clean-------------------------------------------*
+#-------------------------------------------------------------------------*
 ques05=read_excel("C:\\Users\\Danwei Yao\\Desktop\\Questionnaire_20210618.xlsx")
 
 table.dat=ques05%>%
@@ -77,4 +106,4 @@ table.dat$condition=ifelse(rowSums(table.dat[,23:33])==0,"no","yes")
 
 	
 	
-chisq.test(table(table.dat$abx_status,table.dat$household_income_BL))
+
