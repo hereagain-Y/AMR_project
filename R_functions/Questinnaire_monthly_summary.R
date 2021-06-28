@@ -10,7 +10,7 @@ library(sqldf)
 #---------Do certain chisq test for male and Female groups seperately 
 # do chisq-test for ceterin variables 
 	
-do_chisq_test=function(data,var1=character(),var2=character(),gender){
+do_chisq_test=function(data,var1=character(),var2=character(),levels,gender){
   if(gender=="1"){ # if male
   
     cat("this is fro male comparison")
@@ -21,6 +21,8 @@ do_chisq_test=function(data,var1=character(),var2=character(),gender){
     return(sapply(1:levels, function(x)chisq.test(table(data[[var1]],data[[var2]])[x,3:4])$p.val))
   }
 }
+		 #example
+		  do_chisq_test(table.dat,"edu_level_BL","group","1")
 
 #--------------------------------------------------------------------------
 ques05=read_excel("C:\\Users\\Danwei Yao\\Desktop\\Questionnaire_20210618.xlsx")
