@@ -77,7 +77,33 @@ append_bacteria=function(x,y){
 
 append_bacteria(bacteria_list,bacteria_name)
 
+# plot the resistance rate heatmap for e.coli 
+eco_map<-read.xlsx("C:\\Users\\Danwei Yao\\Desktop\\Ecoli_0625.xlsx",sheetName = "Ecoli")
 
+eco_map<-eco_map[1:17,1:7]
+
+colnames(eco_map)[1]<-"ABX"
+rownames(eco_map)<-eco_map$ABX
+eco_map<-eco_map[,-1]
+eco_map$ABX<-sapply(strsplit(eco_map$ABX,"_"),function(x)x[2])
+
+library(pheatmap)
+  annotation_col=data.frame(SampleType=c("Humanstool","Swinestool","Swinesludge","Poultryswab","Poultryfecal","Poultrysludge"))
+    rownames(annotation_col) <- colnames(eco_map)
+        pheatmap(as.matrix(eco_map),cluster_rows = F,cluster_cols = T,display_numbers = T,
+              annotation_col=annotation_col,annotation_legend = T,angle_col = "45"
+        )
+
+
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
 
 #try for example 
 sal=anti_result%>%
