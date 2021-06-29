@@ -7,9 +7,10 @@
 # Table of Contents
 
 * [General ingo]
-* [Data overview]
-* [Methodological information]
-* [Conclusion]
+* [Clean Routine ]
+* [Questionnaire Analysis]
+* [Farm Data Analysis]
+* [R Functions]
 * [Author]
 
 
@@ -26,10 +27,30 @@ In this file, we are aimed to find out the missing isolates which finished MULDI
 * [Questionnaire_monthly_summary.R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/Questinnaire_monthly_summary.R)  
 Table 1 about our questionnaire answers is constructed, comparisions can be customized to our Gender and Age according to the group variable. Chisq/ fisher test is applied for categorical data analysis, other wise, Wilcoxon-Mann-Whitney test or Kruskal Wallis test is adopted.
 
-###  Part II. Questionnaire Analysis
+###  Part II. Questionnaire Analysis  
 
-Data clean steps are included in the "Clean Routine" file(Http).
+* [Antibiotics Classification](https://github.com/hereagain-Y/AMR_project/blob/main/Questionnaire%20analysis/ABX_classification.R)  
+_Antibiotics classification based on WHO guideline._
+* Hetero-resistance  
+[_Check_homo1.R_](https://github.com/hereagain-Y/AMR_project/blob/main/Questionnaire%20analysis/Check_homo1.R) & [_Check_heter2.R_](https://github.com/hereagain-Y/AMR_project/blob/main/Questionnaire%20analysis/Check_heter2.R)    
+_Hetero-resistance condition _No.1_: Isolates from same samples exhibt different AST result using MIC cut-off method.  
+Hetero-resistance condition _No.2_: Isolates who meet the requirement 1 must also meet the _No.2_ criteria which is showing high-resistance (>= 8 fold)._
 
+* [_Heatmap_](https://github.com/hereagain-Y/AMR_project/tree/main/Questionnaire%20analysis/Heatmap_pattern)    
+Plot human ast data, grouped by variables we are interested (_ie. Age, Gender, Drug use frequency_), it supposed to look like this.  
+add imageXXX  
+
+### Part III. Farm Data Analysis
+### Part IV. R Functions 
+* summary of plot functions   
+
+|Function            | Plot   | Description             | 
+|---------           | :------| -----------------------:| 
+|✅plotmap()           | heatmep| plot for....            |
+
+
+
+ raw data + distributions <br>
 
 #### Important Links 
 - HTML: https://www.dropbox.com/home/Proj_ACES/
