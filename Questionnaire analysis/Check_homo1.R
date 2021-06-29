@@ -1,3 +1,13 @@
+#' @title
+#' Hetero-resistance step 1
+#'Find. out all the isolates which share identical results across all the antibiotics, these PIDs are considered homo-resistance.
+#
+#' @references
+#'
+#' @export
+#'
+
+
 # find the iDs that are all Homo across all antibiotics;
 #Update data  
 library(readxl)
