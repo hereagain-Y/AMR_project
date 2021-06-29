@@ -1,4 +1,13 @@
+#' @title
+#' Classify the antiobiotics from our AST system into 8 categories.
+#'
 
+#' @references
+#'
+#' @export
+#'
+
+#'
 ast<-read.csv("~/Desktop/ast0617.csv",sep=",",header=T)
 dim(ast)
 antibiotics=ast%>%
