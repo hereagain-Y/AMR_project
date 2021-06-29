@@ -1,3 +1,6 @@
+# @ Step2: Find Heter-IDs and calculate the frequency of Hetero-resistance appearing...
+# in different antibiotics categories.
+#' human.Mic(): calculate the MIC fold (MIC/guide_line cut-off), if MIC fold is larger than 8, then statisfies the 2nd condition of hetero-resistance.
 #------------------------------------------------------------------
 human_mic=ast%>%
   filter(grepl("^C.*S$",i_pid)&a_bacteria=="ECOLI")%>%
