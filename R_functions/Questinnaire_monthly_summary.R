@@ -46,9 +46,26 @@ do_chisq_test=function(data,var1=character(),var2=character(),levels,gender){
     return(sapply(1:levels, function(x)chisq.test(table(data[[var1]],data[[var2]])[x,3:4])$p.val))
   }
 }
-		 #example
+ #example
 		  do_chisq_test(table.dat,"edu_level_BL","group","1")
 		  
+
+Dostats.test=function(data,var1=character(),group=character(),test){
+  	if(test=="chisq"){
+   			 result1=chisq.test(table(data[[var1]],data[[group]])[,c(1,3)])$p.val# same age comparing male and female
+    			result2=chisq.test(table(data[[var1]],data[[group]])[,c(2,4)])$p.val
+    			rsult_table=cbind("less than 65"=result1,
+                      		"more than 65"=result2)
+   
+  }else{
+     		 result1=fisher.test(table(data[[var1]],data[[group]])[,c(1,3)])$p.val
+     		 result2=fisher.test(table(data[[var1]],data[[group]])[,c(2,4)])$p.val
+     			 rsult_table=cbind("less than 65"=result1,
+                         	 "more than 65"=result2)
+      
+  }
+  return(rsult_table)
+}
 
 		  
 # ------------------------------------------------------------------------*
