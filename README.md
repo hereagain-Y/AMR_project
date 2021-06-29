@@ -1,7 +1,8 @@
 # AMR_project
  This is for the AMR project data analysis at HKU.
  
- ![School of Public Health](https://www.facebook.com/HKUPublicHealth/photos/a.266244326895437/1651846881668501.png)
+ ![School of Public Health](https://github.com/hereagain-Y/AMR_project/blob/main/Readme/HKU_ph.png)
+ 
  
 # Table of Contents
 
