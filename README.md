@@ -39,8 +39,11 @@ _Hetero-resistance condition _No.1_: Isolates from same samples exhibt different
 Hetero-resistance condition _No.2_: Isolates who meet the requirement 1 must also meet the _No.2_ criteria which is showing high-resistance (>= 8 fold)._
 
 * [_Heatmap_](https://github.com/hereagain-Y/AMR_project/tree/main/Questionnaire%20analysis/Heatmap_pattern)    
-Plot human ast data, grouped by variables we are interested (_ie. Age, Gender, Drug use frequency_), it supposed to look like this.  
-add imageXXX  
+Plot human ast data, grouped by variables we are interested (_ie. Age, Gender, Drug use frequency_), it supposed to look like this.   
+<p align="center">
+<img src="https://github.com/hereagain-Y/AMR_project/blob/main/Readme/0615AgeGroup3.png" width="800" height="400">
+</p>
+ 
 
 ### Part III. Farm Data Analysis
 ### Part IV. R Functions 
