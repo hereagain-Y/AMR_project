@@ -9,7 +9,7 @@ colnames(ast_April)[1]<-"i_pid"
 human_stool<-ast_April%>%
   filter(grepl("^C.*1S$",i_pid)&a_bacteria=="ECOLI")%>%
   select(1:5,contains("result"))
-dim(human_stool)  
+
 
 #classify the antibiotics groups 
 

@@ -27,12 +27,12 @@ find_number=function(x){
   return(num)
 }
 number_1=find_number("ECOLI")
-number_2=find_number("SALSP")
-number_3=find_number("SAURS")
-number_4=find_number("KPNEU")
+#number_2=find_number("SALSP")
+#number_3=find_number("SAURS")
+#number_4=find_number("KPNEU")
 
-number_5=find_number("EFAEL")
-number_6=find_number("EFAEM")
+#number_5=find_number("EFAEL")
+#number_6=find_number("EFAEM")
 
 #make table 2-------------------------------------------------------------------
 datalist<-list()
@@ -57,11 +57,11 @@ make_table2<-function(x,y,z){
 }
 
 ecoli1=make_table2(ast_319,"ECOLI",number_1)
-salsp2=make_table2(ast_319,"SALSP",number_2)
-saurs3=make_table2(ast_319,"SAURS",number_3)
-kpneu4=make_table2(ast_319,"KPNEU",number_4)
-efael5=make_table2(ast_319,"EFAEL",number_5)
-efaem6=make_table2(ast_319,"EFAEM",number_6)
+#salsp2=make_table2(ast_319,"SALSP",number_2)
+#saurs3=make_table2(ast_319,"SAURS",number_3)
+#kpneu4=make_table2(ast_319,"KPNEU",number_4)
+#efael5=make_table2(ast_319,"EFAEL",number_5)
+#efaem6=make_table2(ast_319,"EFAEM",number_6)
 
 
 
@@ -77,7 +77,33 @@ append_bacteria=function(x,y){
 
 append_bacteria(bacteria_list,bacteria_name)
 
+# plot the resistance rate heatmap for e.coli 
+eco_map<-read.xlsx("C:\\Users\\Danwei Yao\\Desktop\\Ecoli_0625.xlsx",sheetName = "Ecoli")
 
+eco_map<-eco_map[1:17,1:7]
+
+colnames(eco_map)[1]<-"ABX"
+rownames(eco_map)<-eco_map$ABX
+eco_map<-eco_map[,-1]
+eco_map$ABX<-sapply(strsplit(eco_map$ABX,"_"),function(x)x[2])
+
+library(pheatmap)
+  annotation_col=data.frame(SampleType=c("Humanstool","Swinestool","Swinesludge","Poultryswab","Poultryfecal","Poultrysludge"))
+    rownames(annotation_col) <- colnames(eco_map)
+        pheatmap(as.matrix(eco_map),cluster_rows = F,cluster_cols = T,display_numbers = T,
+              annotation_col=annotation_col,annotation_legend = T,angle_col = "45"
+        )
+
+
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
 
 #try for example 
 sal=anti_result%>%

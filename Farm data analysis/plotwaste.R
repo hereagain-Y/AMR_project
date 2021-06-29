@@ -1,3 +1,7 @@
+# @ plot AST heatmap preparing for meeting report
+#' Use Mi_waste get a long data contains MIC fold calculation and ordered abx labels
+#' Use plot_waste() to construct the hetamp plot, parameters are editbale 
+
 #  Sludge pics
 Mic_waste<-function(farm,waste){
   datcount<-data.frame()
@@ -16,22 +20,21 @@ Mic_waste<-function(farm,waste){
   datcount[,7:41]=lapply(datcount[,7:41],as.numeric)
   dat=datcount%>%
     select_if(~!is.numeric(.)||sum(.)!=0)
-  example=dat[,7:23]
-  example[,1:17]=lapply(seq(1,17,by=1), function(x)example[,x]=example[,x]/cut_off[x])
-  example<-cbind(id=datcount$a_lab_id,example)
-  example<-gather(example,a_coamoxiclav_mic:a_cotrimoxazole_mic,key="colname",value = "value")
-  example$colname=sapply(strsplit(example$colname,"_"),function(x)x[2])
-  example$colname=factor(example$colname,levels = c("coamoxiclav","ampicillin","Chlora.phenicol",
+        example=dat[,7:23]
+             example[,1:17]=lapply(seq(1,17,by=1), function(x)example[,x]=example[,x]/cut_off[x])
+                 example<-cbind(id=datcount$a_lab_id,example)
+                            example<-gather(example,a_coamoxiclav_mic:a_cotrimoxazole_mic,key="colname",value = "value")
+                            example$colname=sapply(strsplit(example$colname,"_"),function(x)x[2])
+                              example$colname=factor(example$colname,levels = c("coamoxiclav","ampicillin","Chlora.phenicol",
                                                     "cotrimoxazole","tetracyclines","gentamicin","cefoxitin","ceftazidime",
                                                     "ceftriaxone", "cefepime","ciprofloxacin","tobramycin","imipenem",
                                                     "merope","azithromycin","aztreonam","colistin"))
   return(example)
 }
 a_farm$i_pid
+# example
 a_waste=Mic_waste(a_farm,waste="influent")
-b_waste1=Mic_waste(c_farm,waste="sludge")
-b_waste2=Mic_waste(c_farm,waste="influent")
-b_waste3=Mic_waste(c_farm,waste="effluent")
+
 plot.waste<-function(data){
   data%>%
     ggplot(aes(x=colname,y=id))+
@@ -55,11 +58,11 @@ plot.waste<-function(data){
   
   
 }
+# example 
 a1=plot.waste(a_waste)+ggtitle("Influent Water")
 
 w1=plot.waste(b_waste1)+ggtitle("Sludge")
-w2=plot.waste(b_waste2)+ggtitle("Influent Water")
-w3=plot.waste(b_waste2)+ggtitle("Effluent Water")
+
 farm_waste=ggarrange(w1+theme(axis.text.x = element_blank(),
                         axis.ticks.x = element_blank(),
                         axis.title.x = element_blank()),

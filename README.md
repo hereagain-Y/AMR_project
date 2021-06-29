@@ -1,8 +1,40 @@
 # AMR_project
  This is for the AMR project data analysis at HKU.
+ 
+ ![School of Public Health](https://www.facebook.com/HKUPublicHealth/photos/a.266244326895437/1651846881668501.png)
+ 
+# Table of Contents
 
-## Table of contentes
-* [General info]
+* [General ingo]
+* [Data overview]
+* [Methodological information]
+* [Conclusion]
+* [Author]
+
+
+## General Information 
+This project is aimed to XXXXXXX
+### Part I. Clean Routine 
+* [Summarytable1 & 2. R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/Summarytable2.R)  
+An easy step was craeted for cleaning our Ast result dataset, by running these two file, a summary table1 collecting information about isolates and sample counts from every sources can rendered. Data can be downloaded [here](https://aces.sph.hku.hk/aces/_ast_result_viewlist.php?order=a_cefoxitin_result&ordertype=ASC)  
+Also, for summarytable 2, resistance rates calculated from each source in every bacterials are reported in the output excel file. A simple heatmap showing the relative frequency of resistant in E.coli is obtaind in this file. 
+
+* [Find missing isolates. R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/Find_missing_isolates.R)  
+In this file, we are aimed to find out the missing isolates which finished MULDI-TOF and validated as from the targeted bacteria, but forgot to complete AST test.
+
+* [Questionnaire_monthly_summary.R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/Questinnaire_monthly_summary.R)  
+Table 1 about our questionnaire answers is constructed, comparisions can be customized to our Gender and Age according to the group variable. Chisq/ fisher test is applied for categorical data analysis, other wise, Wilcoxon-Mann-Whitney test or Kruskal Wallis test is adopted.
+
+###  Part II. Questionnaire Analysis
+
+Data clean steps are included in the "Clean Routine" file(Http).
+
+
+#### Important Links 
+- HTML: https://www.dropbox.com/home/Proj_ACES/
+
+
+
 * [Data overview]
 * [Methodological information]
 * [Conclusion]
