@@ -27,12 +27,12 @@ find_number=function(x){
   return(num)
 }
 number_1=find_number("ECOLI")
-number_2=find_number("SALSP")
-number_3=find_number("SAURS")
-number_4=find_number("KPNEU")
+#number_2=find_number("SALSP")
+#number_3=find_number("SAURS")
+#number_4=find_number("KPNEU")
 
-number_5=find_number("EFAEL")
-number_6=find_number("EFAEM")
+#number_5=find_number("EFAEL")
+#number_6=find_number("EFAEM")
 
 #make table 2-------------------------------------------------------------------
 datalist<-list()
@@ -57,11 +57,11 @@ make_table2<-function(x,y,z){
 }
 
 ecoli1=make_table2(ast_319,"ECOLI",number_1)
-salsp2=make_table2(ast_319,"SALSP",number_2)
-saurs3=make_table2(ast_319,"SAURS",number_3)
-kpneu4=make_table2(ast_319,"KPNEU",number_4)
-efael5=make_table2(ast_319,"EFAEL",number_5)
-efaem6=make_table2(ast_319,"EFAEM",number_6)
+#salsp2=make_table2(ast_319,"SALSP",number_2)
+#saurs3=make_table2(ast_319,"SAURS",number_3)
+#kpneu4=make_table2(ast_319,"KPNEU",number_4)
+#efael5=make_table2(ast_319,"EFAEL",number_5)
+#efaem6=make_table2(ast_319,"EFAEM",number_6)
 
 
 
