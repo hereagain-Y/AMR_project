@@ -6,7 +6,7 @@
  
 # Table of Contents
 
-* [General ingo]
+* [General info]
 * [Clean Routine ]
 * [Questionnaire Analysis]
 * [Farm Data Analysis]
@@ -57,7 +57,6 @@ add imageXXX
 
 
 
-* [Data overview]
-* [Methodological information]
+
 * [Conclusion]
 * [Author]
