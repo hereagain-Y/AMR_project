@@ -67,6 +67,28 @@ Dostats.test=function(data,var1=character(),group=character(),test){
   return(rsult_table)
 }
 
+# ------------------Table 1------------------------------------------------
+#-------------------------------------------------------------------------
+		  
+pvalue<-function(x,...){
+  y<-unlist(x)
+  g<-factor(rep(1:length(x),times=sapply(x,length)))
+  if(is.numeric(y)){
+    p<-t.test(y~g)$p.value
+  }else if(!is.numeric(y)&all(table(y,g)>5)){
+    
+    p<-chisq.test(table(y,g))$p.value
+  }else{
+    p<-fisher.test(table(y,g))$p.value
+  }
+c(" ", sub("<","&lt;",format.pval(p,digits = 2,eps=0.001)))#replace "" with p-val
+
+}
+
+		  # add a p value column in table1 
+subsetdat=table.dat[table.dat$group=="Male(<65)"|table.dat$group=="Female(<65)",]
+
+table1(~age_BL+edu_level_BL+occup_student_BL+num_child_BL+num_household_BL+AMR_BL|group,data=subsetdat,overall = F,extra.col = list('P_value'=pvalue))
 		  
 # ------------------------------------------------------------------------*
 #--------------------Data Clean-------------------------------------------*
