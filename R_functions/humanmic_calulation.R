@@ -5,6 +5,7 @@
 #' @description
 #' This code help to calculate the resistanc level from our AsT dataset
 #' we can set the cut-off according to the guidelines.
+#' results in a long format dataset and the abx names are ordered accoring to WHO guidlines.
 #'
 #' @references
 #' 
@@ -36,7 +37,7 @@ human_june=data.frame(lapply(human_june, function(x){gsub("<= |< |> ","",x)}))
 
 
 
-human.Mic<-function(humandata){
+human.Mic<-function(humandata,cut_off){
   datcount<-humandata
     datcount[,7:41]=lapply(datcount[,7:41],as.numeric)
     dat=datcount%>%
