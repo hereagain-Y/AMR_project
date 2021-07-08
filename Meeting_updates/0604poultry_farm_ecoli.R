@@ -1,12 +1,29 @@
+# title: generate meeting pics 
+# '@ porvides with a clear understanding of our farm sampling process as well as the ast result.
+# 'figure 1 is a summary of our monlthly collected sample
+#' figure 2 describes the checked bacterial isolates in every farm 
+#' figure 3 illustartes the Ast resistance patterns of differnt growing stages from each animal farm in the form of heatmap
+#' figure 4 plots the waste ast pattern map
+
+
+
+# load required libraries 
 library(readxl)
+library(ggplot2)
+library(patchwork)
+library(ggpubr)
+library(tidyverse)
+
+#------------------------------------------------------------------------------------
+#-Figure1----------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
+#load data
 swine<-read_excel("C:\\Users\\Danwei Yao\\Desktop\\poulry_sample.xlsx")
-head(swine)
-dim(swine)
+
 swine=swine[complete.cases(swine),]
 as.Date(swine$`Receive date`)
 swine$Date <- format(as.Date(swine$`Receive date`), "%Y-%m")
 swine$`Sample type`=substring(swine$`Sample type`,1,2)
-unique(swine$`Sample type`)
 swine$Type<-factor(swine$`Sample type`,levels = c(17,18,15,16,19),labels = c("Swab","Fecal","Feed","Drinking","Sludge"))
 
 p=swine%>%
@@ -22,7 +39,7 @@ p=swine%>%
         text = element_text(size=18))+
   scale_x_discrete(guide = guide_axis(angle = 45))
 #ggtitle( "Swine Farm Sample Collection")
-library(patchwork)
+
 p+plot_annotation(title =  "Poultry Farm Sample Collection",
                   theme=theme(plot.title = element_text(color="#292929",size=22,face="bold",family="Arial Black",hjust = 0.5),
                               plot.caption = element_text(colour = "grey50",face="bold.italic",family = "Arial Black"),
@@ -32,19 +49,16 @@ p+plot_annotation(title =  "Poultry Farm Sample Collection",
 
 ggsave("C:\\Users\\Danwei Yao\\Desktop\\poultry_collect1.png",
        width = 40,height = 25,units = "cm",dpi=500,type="cairo-png")
-#----------------------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------------------
+# Fig 2--------------------------------------------------------------------------------------------------------------------
 
 patterns=c("^P.*A$","^P.*D$","^P.*U$")
 iso<-read.csv("C:\\Users\\Danwei Yao\\Desktop\\poultry_isolates.csv",sep=",",header = T)
-head(iso)
-dim(iso)
 
 swine_isolates=iso%>%
   filter(grepl(paste(patterns,collapse = "|"),i_pid))
-swine_isolates=check_iso%>%
-  filter(grepl(paste(patterns,collapse = "|"),i_pid))
-dim(swine_isolates)
-unique(swine_isolates$i_identified_bacteria_final)
+
+
 swine_isolates$fram=substring(swine_isolates$i_pid,1,2)
 swine_isolates$fram<-factor(swine_isolates$fram,levels = c("PD","PE","PF"),labels = c("D","E","F"))
 cal_isolandsample<-function(x){
@@ -53,7 +67,6 @@ cal_isolandsample<-function(x){
   return(result)
 }
 
-cal_isolandsample(swine_isolates)
 
 result_list<-list()
 
@@ -69,11 +82,11 @@ make_summarytable=function(x){
   return(result_list)
 }
 list1=make_summarytable(swine_isolates)
-list1[[1]]
+
 sample.bact=do.call(rbind,list1)
 sample.bact$i_identified_bacteria_final=factor(sample.bact$i_identified_bacteria_final)
 
-# c
+#  
 fig2= ggplot(sample.bact,aes(x=i_identified_bacteria_final,y=n_isolate,fill=factor(type)))+
   geom_bar(stat = "identity",width=0.6,position = "dodge")+
   scale_fill_manual(values=c("#BC3C2999","#0072B599","#7676B199"))+
@@ -107,11 +120,12 @@ fig2+plot_annotation(title =  "Poultry Farm Isolates Summary",
 
 
 ggsave("C:\\Users\\Danwei Yao\\Desktop\\poultry_isolates2.png",
-       width = 40,height = 25,units = "cm",dpi=500,type="cairo-png") 
+       width = 40,height = 25,units = "cm",dpi=500,type="cairo-png")  
+
 #--------------------------------------------------------------------------------------------
-#heat map------------------------------------------
+#Figure 3 heat map---------------------------------------------------------------------------
 ast_319<-read_excel("C:\\Users\\Danwei Yao\\Desktop\\Ast_0707.xlsx")
-dim(ast_319)
+
 d_farm=ast_319%>%
   filter(grepl("^PD.*",i_pid)&a_bacteria=="ECOLI")#0
 d_farm=data.frame(lapply(d_farm, function(x){gsub("<= |< |> ","",x)}))
@@ -122,7 +136,7 @@ f_farm=ast_319%>%
   filter(grepl("^PF.*",i_pid)&a_bacteria=="ECOLI")
 f_farm=data.frame(lapply(f_farm, function(x){gsub("<= |< |> ","",x)}))
 #---------------------------------------------------------------------------------------
-library(tidyverse)
+
 cut_off=c(8,8,16,4,3,8,4,1,8,0.25,2,8,1,1,4,4,2)
 Mic_classification<-function(farm,stage){
   datcount<-data.frame()
