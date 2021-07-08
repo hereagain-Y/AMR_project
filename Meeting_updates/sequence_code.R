@@ -1,20 +1,22 @@
+#' @ generate the sequence data form for future selection 
+#' we add age, gender, abx_use frequency, MDR-pattern, MRSA,whether resistant to reserve abx, husehold information and ast result in to dataset
+#require packadges
 library(readxl)
 library(dplyr)
+
+
+# required data
 ast=read_excel("C:\\Users\\Danwei Yao\\Desktop\\AST_0702.xlsx"
 )
-qustion
-qustion=read_excel("C:\\Users\\Danwei Yao\\Desktop\\Questionnaire_20210618.xlsx"
-)
-
+qustion=read_excel("C:\\Users\\Danwei Yao\\Desktop\\Questionnaire_20210618.xlsx")
+                  
 sequence_ast=ast
 people=substring(unique(sequence_ast$i_pid),1,5)
 ast_ques=qustion%>%
   filter(PID%in%people)
 
 
-ast_ques$house_part1_BL
-
-# with 
+# gender random household ID for every household
 df1=ast_ques%>%
   filter(house_part1_BL!="NA")%>%
   select(PID,house_part1_BL:house_part5_BL)
@@ -24,7 +26,6 @@ df1[,2:6]<-sapply(df1[,2:6],function(x)gsub("\\(.*\\)","",x))
 # substreing the Pid
 testdata=as.data.frame(apply(df1,2,function(x)substring(x,2,5)))
 testdata$max_id=as.vector(apply(testdata,1,max))
-class(testdata$house_part1_BL)
 
 
 group_id <- testdata %>% group_indices(max_id) 
@@ -32,6 +33,7 @@ group_id <- testdata %>% group_indices(max_id)
 testdata=testdata %>%
   mutate(household=paste("house_hold",group_id,""))
 testdata$max_id=gsub(" ", "", testdata$max_id, fixed = TRUE)
+                             
 # add a house hold column 
 ast_ques$new_house=ifelse(ast_ques$house_part1_BL=='NA',"no",testdata$household)
 
@@ -71,11 +73,10 @@ glimpse(ecoli)
 colnames(human_ast)[6:40]=sapply(strsplit(colnames(human_ast)[6:40],"_"),function(x)x[2])
 
 
-lact1=human_ast%>%
-  select(1:2,all_of(lactams))
+# Abx acategory
 
 
-human_ast[apply(human_ast, 1, function(x)any(x=="RES")),]$a_lab_id
+
 
 rifamycins=c("rifampin")
 Tetracycline=c("tetracyclines")
@@ -102,11 +103,9 @@ count_frquency<-function(variable,thresh,endpoint){
   ind<-ave(rep(1,length(variable)),variable,FUN=length)
   variable[ind>thresh&ind<endpoint]
 }
-table(mdr_id)
-ave(rep(1,length(mdr_id)),mdr_id,FUN=length)
-length(human_ast$a_lab_id)
 
-unique(as.data.table(diff_Ids)[, N := .N, by = diff_Ids][N > 0&N<3]$diff_Ids)
+
+
 # data.table(mdr_id)[, .N, mdr_id] count the times of duplicate
 No_mdr=unique(count_frquency(mdr_id,0,4))#<=3
 Mdr= unique(count_frquency(mdr_id,3,8))#<=3
@@ -120,7 +119,6 @@ reserve_list=human_ast%>%
 res_id=reserve_list[apply(reserve_list, 1, function(x)sum(x=="RES",na.rm=T)>=1),]$a_lab_id
 reserve_list[apply(reserve_list, 1, function(x)sum(x=="RES",na.rm=T)>=1),]$a_lab_id
 
-reserve_list[reserve_list]
 human_ast$reserve=ifelse(human_ast$a_lab_id%in%res_id,"RES","SUS")
 sus_id=reserve_list[apply(reserve_list, 1, function(x)sum(x=="RES",na.rm=T)==0),]$a_lab_id
 new_df2=data.frame(PID=human_ast$i_pid,lab_id=human_ast$a_lab_id,MRSA=human_ast$MRSA,MDR=human_ast$resistance,Reserve)
