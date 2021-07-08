@@ -37,7 +37,8 @@ testdata$max_id=gsub(" ", "", testdata$max_id, fixed = TRUE)
 # add a house hold column 
 ast_ques$new_house=ifelse(ast_ques$house_part1_BL=='NA',"no",testdata$household)
 
-new_df=data.frame(PID=ast_ques$PID,Age=ast_ques$age_BL,Gender=ast_ques$gender_BL,Household=ast_ques$new_house,Use_abx=ast_ques$course_year_BL,Ever_use=ast_ques$ever_taken_ABX_BL)
+new_df=data.frame(PID=ast_ques$PID,Age=ast_ques$age_BL,Gender=ast_ques$gender_BL,
+                Household=ast_ques$new_house,Use_abx=ast_ques$course_year_BL,Ever_use=ast_ques$ever_taken_ABX_BL)
 
 
 
@@ -70,7 +71,8 @@ ecoli=human_ast%>%
   filter(a_bacteria=="ECOLI")%>%
   select_if(~!is.numeric(.)||sum(.)!=0)
 glimpse(ecoli)
-colnames(human_ast)[6:40]=sapply(strsplit(colnames(human_ast)[6:40],"_"),function(x)x[2])
+colnames(human_ast)[6:40]=sapply(
+             strsplit(colnames(human_ast)[6:40],"_"),function(x)x[2])
 
 
 # Abx acategory
@@ -85,15 +87,18 @@ phenicol=c("chlora")
 lincosamides=c("clindamycin")
 nitro=c("nitrofurantoin")
 
-category_list=list(lactams,macrolides,aminoglycosides,quinolones,carbapenems,
-                   Tetracycline,rifamycins,sulfonamide,phenicol,lincosamides,nitro,reserve)
+category_list=list(lactams,macrolides,aminoglycosides,
+                   quinolones,carbapenems,
+                   Tetracycline,rifamycins,
+                   sulfonamide,phenicol,lincosamides,
+                   nitro,reserve)
 
 
 
 mdr_id=sapply(1:8, function(x){
   data=human_ast[,c("i_pid","a_lab_id",category_list[[x]])]
-  id=unique(data[apply(data, 1, function(x)any(x=="RES")),]$a_lab_id)
-  id
+    id=unique(data[apply(data, 1, function(x)any(x=="RES")),]$a_lab_id)
+     id
 })
 
 
