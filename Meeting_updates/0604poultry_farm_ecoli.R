@@ -2,7 +2,7 @@
 # '@ porvides with a clear understanding of our farm sampling process as well as the ast result.
 # 'figure 1 is a summary of our monlthly collected sample
 #' figure 2 describes the checked bacterial isolates in every farm 
-#' figure 3 illustartes the Ast resistance patterns of animal farm samplesin the form of heatmap
+#' figure 3 illustartes the Ast resistance patterns of differnt growing stages from each animal farm in the form of heatmap
 #' figure 4 plots the waste ast pattern map
 
 
