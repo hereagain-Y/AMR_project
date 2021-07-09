@@ -57,14 +57,19 @@ Plot human ast data, grouped by variables we are interested (_ie. Age, Gender, D
 * Count function 
 
 |Function                 | Location | Description             | 
-|---------                | :--------| -----------------------:| 
+|---------                |---------| -----------------------:| 
 |✅antibiolength.count() | Count_antibiogram.R| Calculate the antibiogram length for each isolates|
-|-------------------------| :------------------|----------------------:                           |
 |✅count_duplicates()      count_duplicates.R| Count the dupliates times of replicated rows in dataframes|
-|---------                | :--------| -----------------------:| 
 |✅count_frquency()| count_frquency.R| duplicated frequency of every element in a vector, and select the elements that meet our frequency.|
-|---------                | :--------| -----------------------:| 
 
+
+          
+| Time-Based Summarization     |  ✅  |  :x:  |  :x:   |  ✅  |  
+| Time-Based Filtering         |  ✅  |  :x:  |  :x:   |  ✅  |  
+| Padding Gaps                 |  ✅  |  ✅  |  :x:   |  :x:  |  
+| Low to High Frequency        |  ✅  |  :x:  |  :x:   |  :x:  |  
+| Imputation                   |  ✅  |  ✅  |  :x:   |  :x:  |  
+| Sliding / Rolling            |  ✅  |  ✅  |  :x:   |  ✅  |  
 #### Important Links 
 - HTML: https://www.dropbox.com/home/Proj_ACES/
 
