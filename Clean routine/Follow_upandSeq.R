@@ -1,4 +1,5 @@
 # frist table group by follow-up times 
+# add particaipants follow-up results.
 library(readxl)
 library(dplyr)
 ast=read_excel("AST_0721.xlsx"
@@ -14,7 +15,7 @@ ast_ques=qustion%>%
 
 
 ast_ques$house_part1_BL
-
+# create household ID for each household
 # with 
 df1=ast_ques%>%
   filter(house_part1_BL!="NA")%>%
@@ -38,16 +39,11 @@ ast_ques$new_house=ifelse(ast_ques$house_part1_BL=='NA',"no",testdata$household)
 
 new_df=data.frame(PID=ast_ques$PID,Age=ast_ques$age_BL,Gender=ast_ques$gender_BL,Household=ast_ques$new_house,Use_abx=ast_ques$course_year_BL,Ever_use=ast_ques$ever_taken_ABX_BL)
 new_df$id=paste(new_df$PID,"BL",sep="_")
+                             
 #---------------------------------------------------------------------------
 # Follow up 1 data ---------------------------------------------------------
-f1_dat<-ast_ques%>%
-  filter(bl_to_fu1_complete=="2")
 
-f1_dat$id=paste(f1_dat$PID,"F1",sep="_")
-
-
-new_df2=data.frame(PID=f1_dat$PID,Age=f1_dat$age_BL,Gender=f1_dat$gender_BL,Household=f1_dat$new_house,Use_abx=f1_dat$course_month_FU1,Ever_use=f1_dat$ever_taken_ABX_BL,id=f1_dat$id)
-#-------------------------------------------------
+#-----------create folloew up data----------------------------------
 FU_data<- function(dataset,followterm,times,colname){
   follow_up=dataset%>%
     filter((!!as.name(followterm))=="2")
