@@ -1,10 +1,13 @@
 # compute resistance table 
+# this scripts help us to build the resistance table we are interested in. We can simply start by subsetting the data we wanted, and use the bac_restable() to gender
+# a table about resistance% for every antibiotics from each bacterial. Combine_tab() aggregates the results from each bacterial together.
 
 #-------------------------Data selection-------------------------
 #----------------------------------------------------------------
 #-----------------------------------------------------------------
 
 # condition selection : input any condition we want 
+# for ex: select elders
 elder=merge_data%>%
   filter(Age>=65)
 # % load ast data
@@ -36,7 +39,7 @@ find_number=function(x){
   }
   return(num)
 }
-
+# resistance%= res/total number of isolates
 
 bac_restable=function(x,y,z,sample){
   table=subset(x,a_bacteria==y)
@@ -89,7 +92,7 @@ combine_tab$newcol<-factor(combine_tab$newcol,levels = c("amocla","ampicillin","
                                                          "merope","imipenem",
                                                          "trisul","chlora","rifampin","clindamycin","nitrofurantoin","tigecycline" ,
                                                          "colistin","aztreonam",
-                                                         "daptomycin","linezolid","synerc","dtest1","dtest2"))
+                                                         "daptomycin","linezolid","synerc","dtest1","dtest2")) # set abx level 
 combine_tab=combine_tab[order(combine_tab$newcol),]
 resistat_tab=combine_tab[,1:6]
 resistat_tab
