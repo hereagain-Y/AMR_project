@@ -24,31 +24,26 @@ cat("-----Abx category list---------------")
 #foxscr: cefoxitin;
 #synerc: quninupristin
 
-
-lactams=c("amocla","ampicillin","cefoxitin","ceftazidime","ceftriaxone","cefepime")#,"penicillin","oxacillin")
+lactams=c("amocla")
+penicllin=c("ampicillin")
+cephalosporin=c("cefoxitin","ceftazidime","ceftriaxone","cefepime")
 #cefepimepi: 4th generation cephalosporin antibiotic.
 #cefoxition, foxscr: 2nd
 #ceftazidime: 3rd 
 #ceftriaxone: 3rd;
-
-aminoglycosides=c("gentamicin","tobramycin")#"gen500","st1000","vancomycin"
-
-macrolides=c("azithromycin")#"erythromycin")
-quinolones=c("ciprofloxacin")#"levofloxacin","moxifloxacin")
-carbapenems=c("merope","imipenem")
-#rifamycins=c("rifampin")
 Tetracycline=c("tetracyclines")
-uncoventional=c("trisul","chlora")#"clindamycin","nitrofurantoin","rifampin")
-reserve=c("colistin","aztreonam")#"daptomycin","linezolid","aztreonam","synerc")
-#lipopeptide antibiotic:daptomycin /red
-#trisul: sulfonamide antibiotic
-#chlora: phenicol antibiotic 
-#cindamycin: lincosamides
-#nitrofuran: nitrofuran antibiotic 
-#linezolid: oxazokidinones/ red
-#monobactams: aZtreonam / red 
+quinolones=c("ciprofloxacin")
+aminoglycosides=c("gentamicin","tobramycin")
+macrolides=c("azithromycin")
+carbapenems=c("merope","imipenem")
+sulfonamide=c("trisul")
+phenicol=c("chlora")
+rifamycins=c("rifampin")
+#uncoventional=c("trisul","chlora","clindamycin","nitrofurantoin","rifampin")
+reserve=c("colistin","aztreonam")
+lincosamides=c("clindamycin")
+nitro=c("nitrofurantoin")
 
-#clindamycin:lincosamide antibiotic
 
 
 #others=c(carbapenems,antituber)
