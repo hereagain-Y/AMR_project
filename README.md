@@ -30,6 +30,13 @@ In this file, we are aimed to find out the missing isolates which finished MULDI
 * [Questionnaire_monthly_summary.R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/Questinnaire_monthly_summary.R)  
 Table 1 about our questionnaire answers is constructed, comparisions can be customized to our Gender and Age according to the group variable. Chisq/ fisher test is applied for categorical data analysis, other wise, Wilcoxon-Mann-Whitney test or Kruskal Wallis test is adopted.  
 
+* [FollowUpandSeq.R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/Follow_upandSeq.R)    
+Help to subset the sequence list. We manunally add columns named: household ID, follw_up, their drug using status etc.  
+
+* [Resistance_table.R](https://github.com/hereagain-Y/AMR_project/blob/main/Clean%20routine/resistant_table.R)     
+this scripts help us to build the resistance table we are interested in. We can simply start by subsetting the data we wanted, and use the bac_restable() to gender
+a table about resistance% for every antibiotics from each bacterial. Combine_tab() aggregates the results from each bacterial together.  
+
 ###  Part II. Questionnaire Analysis  
 
 * [Antibiotics Classification](https://github.com/hereagain-Y/AMR_project/blob/main/Questionnaire%20analysis/ABX_classification.R)  
@@ -46,32 +53,28 @@ Plot human ast data, grouped by variables we are interested (_ie. Age, Gender, D
 </p>
  
 
-### Part III. Farm Data Analysis
+### Part III. Farm Data Analysis/ Meeting updates  
+This files focus on generating reports or figures in the Citu U meeting, including farm resistome heatmap in different growing stages, sampling process, and some summary tables as well.  
+
 ### Part IV. R Functions 
 * summary of plot functions   
 
 |Function            | Plot   | Description             | 
 |---------           | :------| -----------------------:| 
 |✅plotmap()           | heatmep| plot for....            |
+|✅plot.waste| heatmap| plot heatmap for farm waste data based on their MIC level|
 
-* Count function 
+* Count or stat function 
 
 |Function                 | Location | Description             | 
 |---------                |---------| -----------------------:| 
 |✅antibiolength.count() | Count_antibiogram.R| Calculate the antibiogram length for each isolates|
 |✅count_duplicates()      count_duplicates.R| Count the dupliates times of replicated rows in dataframes|
 |✅count_frquency()| count_frquency.R| duplicated frequency of every element in a vector, and select the elements that meet our frequency.|
+|✅Mic_classification()|MIC_classification.R| Calculate the MiC fold level in different samples.|
+|✅do_chisq_test/Dostats.test|stat_2_category | useful when to compute the p-val using a self-sefined method.|
 
 
-          
-| Time-Based Summarization     |  ✅  |  :x:  |  :x:   |  ✅  |  
-| Time-Based Filtering         |  ✅  |  :x:  |  :x:   |  ✅  |  
-| Padding Gaps                 |  ✅  |  ✅  |  :x:   |  :x:  |  
-| Low to High Frequency        |  ✅  |  :x:  |  :x:   |  :x:  |  
-| Imputation                   |  ✅  |  ✅  |  :x:   |  :x:  |  
-| Sliding / Rolling            |  ✅  |  ✅  |  :x:   |  ✅  |  
-#### Important Links 
-- HTML: https://www.dropbox.com/home/Proj_ACES/
 
 
 
